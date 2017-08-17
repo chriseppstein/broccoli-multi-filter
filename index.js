@@ -130,6 +130,7 @@ Filter.prototype.processAndCacheFile =
 
   function addOutputFile(contents, outputRelativeFilename) {
     var outputPath = path.join(destDir, outputRelativeFilename);
+    mkdirp.sync(path.dirname(outputPath));
     fs.writeFileSync(outputPath, contents, { encoding: self.outputEncoding });
     cacheEntry.results.push({
       output: destDir + '/' + outputRelativeFilename,
